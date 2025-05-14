@@ -2,20 +2,20 @@ import java.io.File;
 import java.io.IOException;
 
 public class ShellCommandHandler{
-    private File currentDirectory;
+    private File currentDirectory; //Current folder that the user is currently in
 
 
-        public ShellCommandHandler(){
+        public ShellCommandHandler(){ //Sets the current folder to the working directory
             this.currentDirectory = new File(System.getProperty("user.dir"));
         }
 
 
-        public void printWorkingDirectory(){
+        public void printWorkingDirectory(){//Displays the full path of the current folder
             System.out.println("Current Directory:" + currentDirectory.getAbsolutePath());
         }
 
 
-        public void listDirectory(){
+        public void listDirectory(){//Displays the full path of the current folder
             String[] files = currentDirectory.list();
             if (files != null) {
                 System.out.println("Files and directories in" + currentDirectory.getAbsolutePath() + ":");
@@ -28,7 +28,7 @@ public class ShellCommandHandler{
         }
 
 
-        public void changeDirectory(String name){
+        public void changeDirectory(String name){//Change current folder(cd)
             File newDirectory = new File(currentDirectory, name);
             if (newDirectory.isDirectory()){
                 currentDirectory = newDirectory;
@@ -39,7 +39,7 @@ public class ShellCommandHandler{
         }
 
 
-        public void makeDirectory(String name){
+        public void makeDirectory(String name){//Creates a new folder
             File newDir = new File(currentDirectory, name);
             if (newDir.mkdir()){
                 System.out.println("Directory created:  " + newDir.getAbsolutePath());
@@ -49,7 +49,7 @@ public class ShellCommandHandler{
         }
 
 
-        public void createFile(String name) {
+        public void createFile(String name) {//Creates a new file
             File newFile = new File(currentDirectory, name);
             try{
                 if (newFile.createNewFile()) {
@@ -63,7 +63,7 @@ public class ShellCommandHandler{
         }
 
 
-        public void printHelp(){
+        public void printHelp(){//Shows the supported commands
             System.out.println("Supported commands: ");
             System.out.println("pwd - Print working directory ");
             System.out.println("ls - List directory contents ");
@@ -75,7 +75,7 @@ public class ShellCommandHandler{
         }
 
 
-        public File getCurrentDirectory(){
+        public File getCurrentDirectory(){//Returns the barking folder
             return currentDirectory;
         }
 
